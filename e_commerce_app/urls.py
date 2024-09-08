@@ -16,10 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main1.urls')),  # Include routing from main1 app
-    path('product/<int:product_id>/', views.product_detail, name='product_detail'),
 ]
