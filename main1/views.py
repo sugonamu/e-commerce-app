@@ -6,4 +6,4 @@ def info_view(request):
         'your_name': 'Will',     # Replace with your actual name
         'your_class': 'KKI',   # Replace with your actual class
     }
-    return render(request, 'main1/info.html', context)
+    return render(request, 'main1.html', context)
