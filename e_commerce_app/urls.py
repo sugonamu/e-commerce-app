@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main1.urls')),  # Include routing from main1 app
+    path('', include('main1.urls')),  # Includes URLs from the main1 application
 ]
+
