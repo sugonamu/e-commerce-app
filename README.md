@@ -24,14 +24,21 @@ Uploading and Deployment (NOTE: Since currently there is an error with PWS, depl
 Illustration
 [Client Browser]  -->  [urls.py]  -->  [views.py]  -->  [models.py] -->  [template HTML]  -->  [Client Browser]
 
-Client: Sends an HTTP request to the Django application.
-urls.py: Routes the request to the appropriate view based on the URL pattern.
-views.py: Handles the request, potentially fetching data from the models.py (database).
-models.py: Interacts with the database and returns data to the view.
-Template HTML: The view renders an HTML template with data passed from the view, and the response is sent back to the client.
+- Client: Sends an HTTP request to the Django application.
+- Urls.py: Routes the request to the appropriate view based on the URL pattern.
+- Views.py: Handles the request, potentially fetching data from the models.py (database).
+- Models.py: Interacts with the database and returns data to the view.
+- Template HTML: The view renders an HTML template with data passed from the view, and the response is sent back to the client.
 
 Purpose of Git:
 Git helps to track changes within the software code and make comments when pushed into github. This helps user to maintain and organise its history, especially for other developers to know where the previous dev left off
+
+Git add _____ : adds _____ file that has experienced changes
+Git add .: adds all file that has experienced changes
+Git commit -m "message" = message to add beside the file on what changes has been done (useful when collaborating with other devleopers)
+Git branch -M main/master: creates a new branch called main/master (depending on your repo)
+Git push -u origin main: push the changes made on the files onto github
+
 
 Why Django?
 Django starapp configuration has every file required for web development. It is also alot easier compared to Java or C++ with a few exceptions and some readable code. Django contains a naming system for every function and component e.g HTTP responses would fall under the views.py
