@@ -19,7 +19,7 @@ Function
 Uploading and Deployment (NOTE: Since currently there is an error with PWS, deployment cannot be done)
 10. Create a new project on PWS and save the key code 
 11. Add our PWS deployment URL into the allowed hosts
-12. Perform Project Command Instruction (git remote, commit, branch)
+12. Perform Project Command Instruction (git remote, commit, branch. git push)
 
 Illustration
 [Client Browser]  -->  [urls.py]  -->  [views.py]  -->  [models.py] -->  [template HTML]  -->  [Client Browser]
