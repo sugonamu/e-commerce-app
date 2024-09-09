@@ -33,12 +33,13 @@ Illustration
 Purpose of Git:
 Git helps to track changes within the software code and make comments when pushed into github. This helps user to maintain and organise its history, especially for other developers to know where the previous dev left off
 
-Git add _____ : adds _____ file that has experienced changes
-Git add .: adds all file that has experienced changes
-Git commit -m "message" = message to add beside the file on what changes has been done (useful when collaborating with other devleopers)
-Git branch -M main/master: creates a new branch called main/master (depending on your repo)
-Git push -u origin main: push the changes made on the files onto github
-
+Git Commands:
+- Git add _____ : adds _____ file that has experienced changes
+- Git add . : adds all file that has experienced changes
+- Git commit -m "message" = message to add beside the file on what changes has been done (useful when collaborating with other devleopers)
+- Git branch -M main/master: creates a new branch called main/master (depending on your repo)
+- Git push -u origin main: push the changes made on the files onto github
+- Git remote (name) (url): To use common repository that all team members use to exchange their changes
 
 Why Django?
 Django starapp configuration has every file required for web development. It is also alot easier compared to Java or C++ with a few exceptions and some readable code. Django contains a naming system for every function and component e.g HTTP responses would fall under the views.py
