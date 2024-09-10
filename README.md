@@ -78,11 +78,11 @@ Git Commands:
 - git push -u origin main: push the changes made on the files onto github
 - git remote (name) (url): To use common repository that all team members use to exchange their changes
 ----
-Why Django?
+Why Django?<br>
 Django starapp configuration has every file required for web development. It is also alot easier compared to Java or C++ with a few exceptions and some readable code. Django contains a naming system for every function and component e.g HTTP responses would fall under the views.py
 
 
-Why is DJango called an ORM?
+Why is DJango called an ORM?<br>
 ORM, defined as object-relational mapping layer, allows one's application to interact with databases such as PostgreSQL or MySQL. Instead of having to write SQL queries to pull data from the database, one could use python objects and methods, which the ORM translates to SQL commands, to conduct the user's request.
 
 
