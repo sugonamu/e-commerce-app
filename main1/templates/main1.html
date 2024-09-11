@@ -1,32 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application Info</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            text-align: center;
-        }
-        .info {
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 8px;
-            display: inline-block;
-            max-width: 500px;
-        }
-        .info h1 {
-            margin-top: 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="info">
-        <h1>Application Name: {{ app_name }}</h1>
-        <p>Created by: {{ your_name }}</p>
-        <p>Class: {{ your_class }}</p>
+{% extends 'base.html' %}
+
+{% block title %}Application Info{% endblock title %}
+
+{% block content %}
+<div class="info">
+    <h1>Application Name: {{ app_name }}</h1>
+    <p>Created by: {{ your_name }}</p>
+    <p>Class: {{ your_class }}</p>
+    <br>
+    <!-- Add Product Button -->
+    <a href="{% url 'add_product' %}" class="add-product-button">Add Product</a>
+    <br><br>
+    <!-- Products List -->
+    <div class="products-list">
+        <h2>Products:</h2>
+        {% if products %}
+            <ul>
+                {% for product in products %}
+                    <li>
+                        <strong>{{ product.name }}</strong><br>
+                        Price: {{ product.price }}<br>
+                        Description: {{ product.description }}<br>
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 200px; height: auto;">
+                        {% else %}
+                            <p>No image available.</p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No products available.</p>
+        {% endif %}
     </div>
-</body>
-</html>
+</div>
+{% endblock content %}
