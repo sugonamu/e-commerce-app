@@ -86,13 +86,13 @@ Why is DJango called an ORM?<br>
 ORM, defined as object-relational mapping layer, allows one's application to interact with databases such as PostgreSQL or MySQL. Instead of having to write SQL queries to pull data from the database, one could use python objects and methods, which the ORM translates to SQL commands, to conduct the user's request.
 
 XML
-![JSON by ID](https://imgur.com/a/BzngKBQ)
+https://imgur.com/eWYqw8N
 JSON
-![JSON by ID](https://imgur.com/a/BzngKBQ)
+https://imgur.com/6KLzGGc
 XML by ID
-![JSON by ID](https://imgur.com/a/BzngKBQ)
+https://imgur.com/Y8hVhj6
 JSON by ID
-https://imgur.com/a/BzngKBQ
+https://imgur.com/kyLT0Ga
 
 
 Created by Sugonamu (Will KKI)
