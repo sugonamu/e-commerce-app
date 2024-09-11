@@ -92,7 +92,7 @@ JSON
 XML by ID
 ![JSON by ID](https://imgur.com/a/BzngKBQ)
 JSON by ID
-![JSON by ID](https://imgur.com/a/BzngKBQ)
+https://imgur.com/a/BzngKBQ
 
 
 Created by Sugonamu (Will KKI)
