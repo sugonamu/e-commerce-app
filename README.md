@@ -78,11 +78,11 @@ Git Commands:
 - git push -u origin main: push the changes made on the files onto github
 - git remote (name) (url): To use common repository that all team members use to exchange their changes
 ----
-Why Django?<br>
+**Why Django?**<br>
 Django starapp configuration has every file required for web development. It is also alot easier compared to Java or C++ with a few exceptions and some readable code. Django contains a naming system for every function and component e.g HTTP responses would fall under the views.py
 
 
-Why is DJango called an ORM?<br>
+**Why is DJango called an ORM?**<br>
 ORM, defined as object-relational mapping layer, allows one's application to interact with databases such as PostgreSQL or MySQL. Instead of having to write SQL queries to pull data from the database, one could use python objects and methods, which the ORM translates to SQL commands, to conduct the user's request.
 
 
@@ -94,44 +94,39 @@ PBD Assignment 3
 - Set up your virtual environment (env\Scripts\activate)
 
 <b>Step by Step/Walkthrough (With Explanation)</b><br>
-1. Created 2 new html page (addproduct.html and base.html) . The purpose of base.html just helps to use a consitant layout between all pages, in other words, template inheritance. This also makes it easier if the basic layout of the page requires changes e.g changing from pink to blue, changing within the base would change for all pages rather than having to go through every single page to change it
-2. Edited my HTML page (main1) such that it will use the model (name, price, description and images) and also a add product button which is linked towards the addproduct.html page.
-3. Planned to add images, thus added an image model into models.py, conducted makemigrations and migrate to succesfully migrate the model also import uuid to give each product added a unique id e.g Toilet has an id of 1 and Zingus has an id of 4 (Refer from image on JSON or XML)
-4. Added templates(seperate folder from main1 and addproduct) into 'DIRS' in settings.py so base.html would be detected as a template file
-5. Created a new file called forms.py to create the structure of the form to add a new product where the fields are name, price, description and image
-6. Major changes in views.py: Functions info_view has a new context (products: product) to display whatever product that has been added. Function add_product handles the form to determine if the product can be added or not and if so, redirects the user to home (purpose of import redirect). 
-7. Added a URL path on URLPATTERNS in main1/urls.py to access the function add_product added in views.py earlier. <br>
+1. Created 2 new html page (`addproduct.html` and `base.html`) . The purpose of `base.html` just helps to use a consitant layout between all pages, in other words, template inheritance. This also makes it easier if the basic layout of the page requires changes e.g changing from pink to blue, changing within the base would change for all pages rather than having to go through every single page to change it
+2. Edited my HTML page (`main1`) such that it will use the model (name, price, description and images) and also a add product button which is linked towards the `addproduct.html` page.
+3. Planned to add images, thus added an image model into `models.py`, conducted makemigrations and migrate to succesfully migrate the model also import uuid to give each product added a unique id e.g Toilet has an id of 1 and Zingus has an id of 4 (Refer from image on JSON or XML)
+4. Added templates(seperate folder from main1 and addproduct) into 'DIRS' in settings.py so `base.html` would be detected as a template file
+5. Created a new file called `forms.py` to create the structure of the form to add a new product where the fields are name, price, description and image
+6. Major changes in `views.py`: Functions `info_view` has a new context (products: product) to display whatever product that has been added. Function `add_product` handles the form to determine if the product can be added or not and if so, redirects the user to home (purpose of import redirect). 
+7. Added a URL path on URLPATTERNS in `main1/urls.py` to access the function `add_product` added in `views.py` earlier. <br>
 <B> XML and JSON Data Stuff </B>
-8. Go back to views.py to add import HttpResponse and serializers for XML files. Added the show_xml that receives a parameter request with a variable (data) to store all the newly added products. XML by ID is pretty much the same thing but instead we can return specifically the product we want e.g the info for product id 1 and if the product doesnt exist, an error message would display. The HttpResponse is to receive the data in a structured format for users who wants XML data
-9. Head to main1/urls.py to add another URLPATTERN, in this case, the xml path and xml by id path (URL Routing). When opened on a local host, this will return the XML response, whether it is all products or a specific product. These are the links it can be tested in <br>http://localhost:8000/xml/ XML<br>http://localhost:8000/xml/1/ XML by ID
+8. Go back to `views.py` to add import HttpResponse and serializers for XML files. Added the show_xml that receives a parameter request with a variable (data) to store all the newly added products. XML by ID is pretty much the same thing but instead we can return specifically the product we want e.g the info for product id 1 and if the product doesnt exist, an error message would display. The HttpResponse is to receive the data in a structured format for users who wants XML data
+9. Head to `main1/urls.py` to add another URLPATTERN, in this case, the xml path and xml by id path (URL Routing). When opened on a local host, this will return the XML response, whether it is all products or a specific product. These are the links it can be tested in <br>`http://localhost:8000/xml/ `XML<br>`http://localhost:8000/xml/1/ `XML by ID
 10. Similarly for JSON, we need to define the data (products), but JSON is more 
 neater, listing out side by side products' price, name and description. JsonResponse works the same as HttpResponse but for JSON. Similarly with XML by ID, JSON by id is just tracking by product id and giving a cleaner and more specific display for x product (according to their id). Once again if product id not found, an error message will be displayed
-11. Once again, head to main1/urls.py to add another URLPATTERN for json and json by id path (URLROUTING). When opened on a local host, this will return the JSON response, whether it is all products or a specific product. These are the links it can be tested <br>http://localhost:8000/json/ JSON<br>http://localhost:8000/json/1/ JSON by ID
+11. Once again, head to `main1/urls.py` to add another URLPATTERN for json and json by id path (URLROUTING). When opened on a local host, this will return the JSON response, whether it is all products or a specific product. These are the links it can be tested <br>`http://localhost:8000/json/` JSON<br>`http://localhost:8000/json/1/` JSON by ID
 
+-----
 
-Why do we need Data Delivery?
+**Why do we need Data Delivery?**  
+Data delivery is crucial for enabling users to interact with platforms by submitting or receiving data. In e-commerce, for instance, users submit data to add new products or make transactions. Effective data delivery ensures seamless data flow between users and the platform, enhancing functionality and user experience.
 
+**Which is better JSON or XML? Why?**  
+JSON is generally considered better than XML for most web applications due to its lightweight nature, ease of parsing, and human-readability. While XML supports more complex data structures, JSON is simpler, less verbose, and better suited for modern web applications, especially those dealing with APIs.
 
-Which is better JSON or XML? Why?
+**Why is JSON more popular than XML?**  
+JSON's popularity stems from its simplicity, smaller size, and ease of use compared to XML. JSON integrates seamlessly with JavaScript, making it a preferred format for web applications. Additionally, JSON's concise syntax makes data transmission faster and more efficient.
 
+**What is the use of `is_valid()`?**  
+In Django forms, `is_valid()` is used to check whether the submitted form data conforms to the validation rules defined in the form. If the form is valid, it returns `True`, allowing further processing of the data. Otherwise, it returns `False`, indicating errors in the form fields.
 
-Why is JSON more popular than XML?
+**Why do we need the method in forms?**  
+The `method` attribute in forms specifies how the data is submitted to the server (either `GET` or `POST`). It determines how the form data is sent: `POST` for secure data submission like passwords or personal information, and `GET` for retrieving data. Choosing the correct method ensures proper handling of the data.
 
-
-What is the use of is_valid()?
-
-
-
-Why do we need method in forms?
-
-
-What is a csrf_token and why do we need it? (Explain what happens if we dont use it)
-
-
-
-
-
-
+**What is a `csrf_token` and why do we need it?**  
+A `csrf_token` (Cross-Site Request Forgery token) is a security measure that prevents malicious attacks where unauthorized commands are submitted on behalf of a user. Without it, attackers could exploit vulnerabilities by making requests to your server on behalf of the logged-in user, potentially compromising data integrity.
 
 
 

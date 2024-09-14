@@ -8,10 +8,8 @@
     <p>Created by: {{ your_name }}</p>
     <p>Class: {{ your_class }}</p>
     <br>
-    <!-- Add Product Button -->
     <a href="{% url 'add_product' %}" class="add-product-button">Add Product</a>
     <br><br>
-    <!-- Products List -->
     <div class="products-list">
         <h2>Products:</h2>
         {% if products %}
