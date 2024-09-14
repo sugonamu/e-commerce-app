@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1","william-samuel-ecommerceapp.pbp.cs.ui.ac.id"]
 
+CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://pbp.cs.ui.ac.id/william.samuel/ecommerceapp", "https://pbp.cs.ui.ac.id/william.samuel/ecommerceapp"]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
