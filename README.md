@@ -141,4 +141,25 @@ JSON by ID<br>
 https://imgur.com/kyLT0Ga<br>
 
 
+PBD Assignment 4
+-
+<b>Step by Step/Walkthrough (With Explanation)</b><br>
+
+
+
+ What is the difference between `HttpResponseRedirect()` and `redirect()`? <br>
+- `HttpResponseRedirect()` is a method that directly returns an HTTP 302 response with a redirection URL, while `redirect()` is a more flexible shortcut that internally calls `HttpResponseRedirect()` and can take URLs, view names, or arguments. This makes `redirect()` more convenient and commonly used.
+
+Explain how the MoodEntry model is linked with User!<br>
+- The MoodEntry model is linked with the User model using a foreign key, ensuring that each mood entry is associated with a specific user. This relationship allows tracking which user created each entry, providing personalization and accountability within the application.
+
+What is the difference between authentication and authorization, and what happens when a user logs in? Explain how Django implements these two concepts.<br>
+
+- Authentication involves verifying a user's identity (e.g., checking credentials), while authorization determines what the authenticated user is allowed to access or do. When a user logs in, Django authenticates their credentials and creates a session using cookies to remember the logged-in state, enabling authorized actions.
+
+How does Django remember logged-in users? Explain other uses of cookies and whether all cookies are safe to use. <br>
+- Django uses session cookies to remember logged-in users by storing a session ID on the client side and mapping it to a session object on the server. Cookies can also store preferences and track user behavior, but not all cookies are safe—if not secured properly, they can be exploited, leading to session hijacking.
+
+
+
 Created by Sugonamu (Will KKI)

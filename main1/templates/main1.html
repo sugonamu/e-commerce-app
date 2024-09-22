@@ -8,7 +8,7 @@
     <p>Created by: {{ your_name }}</p>
     <p>Class: {{ your_class }}</p>
     <br>
-    <a href="{% url 'add_product' %}" class="add-product-button">Add Product</a>
+    <a href="{% url 'main:add_product' %}" class="add-product-button">Add Product</a>
     <br><br>
     <div class="products-list">
         <h2>Products:</h2>
@@ -30,6 +30,10 @@
         {% else %}
             <p>No products available.</p>
         {% endif %}
+        <a href="{% url 'main:logout' %}">
+            <button>Logout</button>
+          </a>
+        <h5>Last login session: {{ last_login }}</h5>
     </div>
 </div>
 {% endblock content %}
