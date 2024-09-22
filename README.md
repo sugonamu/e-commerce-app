@@ -143,8 +143,23 @@ https://imgur.com/kyLT0Ga<br>
 
 PBD Assignment 4
 -
-<b>Step by Step/Walkthrough (With Explanation)</b><br>
-
+<b>Step by Step Explanation</b><br>
+1. Imported usercreatorform and messages while also adding functions to `register (request)` so users do not need to keep creating new forms from scratch and message is just to display messages.
+2. Create `register.html` for the register page where user can create an account together with having a password.
+3. Import register in urls and add its path so users can be redirected to the page
+4. Import login, authenticate and authenticationform while also adding function to login user where it will autheticate users trying to login. If the user is valid, meaning their account exists within the database, they will be shown the main page however if fail, it will return back to the login page 
+5. Create `login.html` for the login page for users to login to their account with products theyve added
+6. import login_user in urls and add its path so users can be redirected to the page
+7. Similar concept with register and login: import logout in `views.py` and create the function where logging out would redirect to the login page. Add the logout button in the main1.html page, importing logout in urls and its path so users can be redirected 
+8. Added the @login_required decorator to restrict access to logged-in users only. Users attempting to access the page were redirected to the login page if they were not authenticated.
+9. Modified the login function to set a cookie named last_login with the timestamp of the user's login. This information was displayed on the main page to show when the user last logged in.
+10. Updated the logout function to delete the last_login cookie when the user logged out, ensuring no stale cookie data remained.
+11. Added a small HTML snippet to display the last_login cookie value on the main page, allowing users to see their last login session details.
+12. Linked the Products model to the User model using a ForeignKey, so each mood entry was associated with the logged-in user who created it.
+13. Modified the mood entry creation logic to assign the logged-in user to the user field before saving the mood entry to the database.
+14. Adjusted the main page logic to display only the mood entries belonging to the logged-in user by filtering Products objects based on the current user.
+15. During migration, assigned a default user (user ID 1) to existing Products records to prevent migration errors related to missing user data.
+16. Updated the DEBUG setting in `settings.py` to toggle between production and development modes based on an environment variable for better security in a live environment.
 
 
  What is the difference between `HttpResponseRedirect()` and `redirect()`? <br>
