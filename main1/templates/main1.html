@@ -3,37 +3,40 @@
 {% block title %}Application Info{% endblock title %}
 
 {% block content %}
-<div class="info">
-    <h1>Application Name: {{ app_name }}</h1>
-    <p>Created by: {{ your_name }}</p>
-    <p>Class: {{ your_class }}</p>
-    <br>
-    <a href="{% url 'main:add_product' %}" class="add-product-button">Add Product</a>
-    <br><br>
-    <div class="products-list">
-        <h2>Products:</h2>
+{% include 'navbar.html' %}
+{% load static %}
+
+<div class="info-container flex flex-col items-center p-6 bg-gray-100 min-h-screen">
+    <h1 class="text-3xl font-bold mb-4">Application Information</h1>
+    
+    <div class="info-cards grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+        {% include 'card_info.html' with title="Application Name" value=app_name %}
+        {% include 'card_info.html' with title="Created by" value=your_name %}
+        {% include 'card_info.html' with title="Class" value=your_class %}
+    </div>
+
+    <a href="{% url 'main:add_product' %}" class="add-product-button bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200 mb-4">Add Product</a>
+    
+    <div class="products-list w-full">
+        <h2 class="text-2xl font-semibold mb-4 text-center">Products:</h2> <!-- Centered heading -->
         {% if products %}
-            <ul>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {% for product in products %}
-                    <li>
-                        <strong>{{ product.name }}</strong><br>
-                        Price: {{ product.price }}<br>
-                        Description: {{ product.description }}<br>
-                        {% if product.image %}
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 200px; height: auto;">
-                        {% else %}
-                            <p>No image available.</p>
-                        {% endif %}
-                    </li>
+                    {% include 'product_card.html' with product=product %}
                 {% endfor %}
-            </ul>
+            </div>
         {% else %}
-            <p>No products available.</p>
+            <div class="flex flex-col items-center justify-center mt-4">
+                <p class="text-gray-600 mb-2">No products available.</p>
+                <img src="{% static 'image/very-sad.png' %}" alt="Sad face" class="w-32 h-32 mb-4 mx-auto"/>
+            </div>
         {% endif %}
-        <a href="{% url 'main:logout' %}">
-            <button>Logout</button>
-          </a>
-        <h5>Last login session: {{ last_login }}</h5>
     </div>
 </div>
+
+<!-- Moved footer outside the main content div to stick it at the bottom -->
+<footer class="bg-white-100 p-4 mt-6 w-full">
+    <h5 class="text-sm text-gray-500 text-center">Last login session: {{ last_login }}</h5>
+</footer>
+
 {% endblock content %}

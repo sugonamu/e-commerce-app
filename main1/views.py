@@ -1,5 +1,5 @@
 import datetime
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, reverse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -106,3 +106,22 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+def edit_product(request, product_id):
+    product = Product.objects.get(pk=product_id)
+
+    form = ProductForm(request.POST or None, instance=product)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:info_view'))
+
+    context = {'form': form}
+    return render(request, "editproduct.html", context)
+
+def delete_product(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    product.delete()
+    return HttpResponseRedirect(reverse('main:info_view'))
+
+def error(request):
+    return render(request, 'error.html') 

@@ -13,5 +13,9 @@ urlpatterns = [
     path('xml/<int:product_id>/', views.show_xml_by_id, name='product_xml_by_id'),
     path('register/', views.register, name='register'),
     path('login/', views.login_user, name='login'),
-    path('logout/', views.logout_user, name='logout')
+    path('logout/', views.logout_user, name='logout'),
+    path('edit-product/<uuid:product_id>/', views.edit_product, name='edit_product'),
+    path('delete/<uuid:product_id>', views.delete_product, name='delete_product'),
+    path('error/', views.error, name='error')
+
 ]

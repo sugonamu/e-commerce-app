@@ -176,5 +176,55 @@ How does Django remember logged-in users? Explain other uses of cookies and whet
 - Django uses session cookies to remember logged-in users by storing a session ID on the client side and mapping it to a session object on the server. Cookies can also store preferences and track user behavior, but not all cookies are safe—if not secured properly, they can be exploited, leading to session hijacking.
 
 
+PBD Assignment 5
+-
+<b>Step by Step Explanation</b><br>
+1. added viewport and script tailwind: viewport allows the website to suit for mobile users and tailwind is for css (page aesthetics mainly)
+2. added function for edit_product in `views.py`: function works by getting the id of the product then change it into a form where features can be edited and saved.
+3. created `editproduct.html`: the page to edit the product
+4. connected the url path in `urls.py`: html file can be accessed by main:edit_product now
+5. added function for delete_product in `views.py`: function by getting the id of the product and deleting it completely from the database.
+6. connected the url path in `urls.py`: clicking on anything with the path delete_product would run the function, deleting the product
+7. button for edit product and delete product were added onto main.html
+8. created a navigation bar which has cart, categories, products, home and logout in templates (same folder as `base.html`)
+9. added {% include 'navbar.html' %} to `addproduct.html`,`editproduct.html` and `main1.html`
+10. added whitenoise middleware to settings.py and a static folder to manage static files e.g images
+11. created a global.css which is the universal look for certain features e.g forms
+12. making all the other pages look aesthetically pleasing
+13. added `card_info.html` to display app name, class and name
+14. added `error.html` to display pages that are still unworked on (carts and categories)
+15. added error function so user would be brought to error.html when carts or categories in navbar is clicked
+
+
+
+ If there are multiple CSS selectors for an HTML element, explain the priority order of these CSS selectors!
+
+1. **Inline styles**: These have the highest specificity and override other styles.
+2. **IDs**: Selectors that target an ID (e.g., `#example`) are more specific than class selectors.
+3. **Classes, attributes, and pseudo-classes**: Selectors that target classes (e.g., `.example`), attributes (e.g., `[type="text"]`), and pseudo-classes (e.g., `:hover`) have a lower priority than IDs.
+4. **Elements and pseudo-elements**: These selectors (e.g., `div`, `p`, `::before`) have the lowest specificity.
+5. **Universal selector**: The `*` selector applies to all elements but has the lowest specificity.
+
+This hierarchy ensures that more specific styles override more general ones.
+
+ Why does responsive design become an important concept in web application development? Give examples of applications that have and have not implemented responsive design!
+
+- Responsive design is crucial in web application development because it ensures that applications function well on a variety of devices and screen sizes. With the increasing use of smartphones and tablets, having a responsive design helps improve user experience, accessibility, and engagement. An example of applications with responsive designs could be Gojek, an application without a responsive design would be time.gov, which is a government website. 
+
+
+ Explain the differences between margin, border, and padding, and how to implement these three things!
+
+- Margin is space outside the box, border is the line surrounding the box and padding is within the box/border.
+
+ - `.example` { <br>
+   ` margin: 20px; `  Space outside the border<br>
+    `border: 1px solid black;` The border itself <br>
+    `padding: 10px; `  Space inside the border *<br>
+
+
+
+ Explain the concepts of flex box and grid layout along with their uses! <br>
+- Flexbox is for one-dimensional layouts. Allowing items within a container to be aligned and distributed along a single axis (either horizontal or vertical) whereas grid layout is for two-dimensional layouts. Creating complex layouts using rows and columns.
+
 
 Created by Sugonamu (Will KKI)
