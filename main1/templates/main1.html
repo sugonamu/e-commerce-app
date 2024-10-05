@@ -15,12 +15,20 @@
         {% include 'card_info.html' with title="Class" value=your_class %}
     </div>
 
-    <a href="{% url 'main:add_product' %}" class="add-product-button bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200 mb-4">Add Product</a>
-    
+    <!-- Two buttons side by side -->
+    <div class="flex space-x-4 mb-4">
+        <a href="{% url 'main:add_product' %}" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+            Add New Product
+        </a>
+        <button id="addProductBtn" class="bg-green-500 hover:bg-green-600 text-white rounded-lg text-sm px-4 py-2 transition duration-300">
+            Add New Product (Ajax)
+        </button>
+    </div>
+
     <div class="products-list w-full">
         <h2 class="text-2xl font-semibold mb-4 text-center">Products:</h2> <!-- Centered heading -->
         {% if products %}
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="product-container">
                 {% for product in products %}
                     {% include 'product_card.html' with product=product %}
                 {% endfor %}
@@ -34,9 +42,121 @@
     </div>
 </div>
 
-<!-- Moved footer outside the main content div to stick it at the bottom -->
+<!-- Modal for adding new product -->
+<div id="addProductModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-4">Add New Product</h2>
+        <form id="addProductForm">
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-semibold">Product Name</label>
+                <input type="text" id="name" name="name" class="w-full p-2 border rounded-md" required>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-semibold">Description</label>
+                <textarea id="description" name="description" class="w-full p-2 border rounded-md" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="price" class="block text-sm font-semibold">Price</label>
+                <input type="number" id="price" name="price" class="w-full p-2 border rounded-md" required>
+            </div>
+            <div class="mb-4">
+                <label for="image" class="block text-sm font-semibold">Image URL</label>
+                <input type="url" id="image" name="image" class="w-full p-2 border rounded-md">
+            </div>
+            <div class="text-red-500" id="errorMessage" style="display: none;"></div>
+            <div class="flex justify-end">
+                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white rounded-lg px-4 py-2">
+                    Add Product
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Footer -->
 <footer class="bg-white-100 p-4 mt-6 w-full">
     <h5 class="text-sm text-gray-500 text-center">Last login session: {{ last_login }}</h5>
 </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const addProductBtn = document.getElementById('addProductBtn');
+        const addProductModal = document.getElementById('addProductModal');
+        const addProductForm = document.getElementById('addProductForm');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Open modal
+        addProductBtn.addEventListener('click', () => {
+            addProductModal.classList.remove('hidden');
+        });
+
+        // Submit form via AJAX
+        addProductForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the default way
+            const formData = new FormData(addProductForm);
+
+            fetch('/create-ajax/', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'X-Requested-With': 'XMLHttpRequest',  // Indicates an AJAX request
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Clear the form
+                    addProductForm.reset();
+                    // Close the modal
+                    addProductModal.classList.add('hidden');
+                    // Refresh the product list asynchronously
+                    loadProductList();
+                } else {
+                    errorMessage.textContent = data.error;
+                    errorMessage.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessage.textContent = 'An error occurred. Please try again.';
+                errorMessage.style.display = 'block';
+            });
+        });
+
+        // Load product list asynchronously
+        function loadProductList() {
+            fetch('/get-user-products/', {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                const productContainer = document.getElementById('product-container');
+                productContainer.innerHTML = ''; // Clear previous content
+
+                data.products.forEach(product => {
+                    const productCard = `
+                        <div class="product-card transition-transform duration-300 hover:scale-105">
+                            <div class="flex justify-center bg-gray-100 p-4">
+                                <img src="${product.image_url}" alt="${product.name}" class="object-cover h-48 w-full rounded-md">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-2xl text-gray-800 mb-2">${product.name}</h3>
+                                <p class="text-gray-600 mb-4">${product.description}</p>
+                                <div class="flex items-center justify-between mb-2">
+                                    <p class="font-semibold text-lg text-gray-900">Price: $${product.price}</p>
+                                </div>
+                            </div>
+                        </div>`;
+                    productContainer.insertAdjacentHTML('beforeend', productCard);
+                });
+            })
+            .catch(error => console.error('Error fetching products:', error));
+        }
+    });
+</script>
 
 {% endblock content %}

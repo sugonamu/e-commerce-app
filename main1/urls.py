@@ -16,6 +16,7 @@ urlpatterns = [
     path('logout/', views.logout_user, name='logout'),
     path('edit-product/<uuid:product_id>/', views.edit_product, name='edit_product'),
     path('delete/<uuid:product_id>', views.delete_product, name='delete_product'),
-    path('error/', views.error, name='error')
+    path('error/', views.error, name='error'),
+    path('create-ajax/', views.create_product_ajax, name='create_product_ajax'),
 
 ]

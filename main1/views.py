@@ -9,10 +9,25 @@ from django.http import HttpResponse,HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 @login_required(login_url='/login')
 def info_view(request):
     products = Product.objects.filter(user=request.user)
+    
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':  # Check if the request is AJAX
+        products_data = [
+            {
+                'pk': product.pk,
+                'name': product.name,
+                'description': product.description,
+                'price': product.price,
+                'image_url': product.image_url,
+            }
+            for product in products
+        ]
+        return JsonResponse({'products': products_data})
+    
     context = {
         'name': request.user.username,
         'app_name': 'E-Commerce App',
@@ -125,3 +140,16 @@ def delete_product(request, product_id):
 
 def error(request):
     return render(request, 'error.html') 
+
+@csrf_exempt
+def create_product_ajax(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.user = request.user
+            product.save()
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'error': 'Invalid form data'}, status=400)
+    return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)
