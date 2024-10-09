@@ -227,4 +227,31 @@ This hierarchy ensures that more specific styles override more general ones.
 - Flexbox is for one-dimensional layouts. Allowing items within a container to be aligned and distributed along a single axis (either horizontal or vertical) whereas grid layout is for two-dimensional layouts. Creating complex layouts using rows and columns.
 
 
+
+Assignment 6
+-
+
+# Web Application Development
+
+### Benefits of Using JavaScript in Web Development
+JavaScript allows for dynamic, interactive, and responsive web applications. It runs on the client-side, reducing the load on servers, and enables asynchronous actions like loading data without refreshing the page. Additionally, it works across all modern browsers and offers extensive libraries and frameworks like React, Vue.js, and Node.js, streamlining both front-end and back-end development.
+
+### Importance of Using `await` with `fetch()`
+The `fetch()` function returns a promise, which represents an asynchronous operation. Using `await` pauses the execution of the code until the promise is resolved or rejected. If `await` is not used, the code would continue to run without waiting for the response, which could result in undefined data being used or errors in the application.
+
+### Need for `csrf_exempt` with AJAX POST
+Django includes Cross-Site Request Forgery (CSRF) protection, which prevents unauthorized actions on behalf of a logged-in user. When using AJAX POST, the CSRF token is usually required. By using the `csrf_exempt` decorator, we bypass this protection for the specific view, allowing the AJAX POST request to go through without needing the token. However, this should be used cautiously to avoid security risks.
+
+### Why User Input Sanitization Cannot be Done Only in the Front-End
+Sanitization on the front-end can be easily bypassed by malicious users, as they can manipulate the data sent to the server directly via developer tools or scripts. Therefore, back-end sanitization is crucial to ensure that no harmful input (e.g., SQL injection, XSS attacks) is processed by the server. Both layers of sanitization—front-end and back-end—are essential for robust security.
+
+### Step-by-Step Implementation of Checklist
+1. **JavaScript and AJAX Integration**: integrated JavaScript with AJAX to dynamically add new products without refreshing the page. I used `fetch()` to send data asynchronously.
+2. **Handling CSRF Tokens**: applied the `csrf_exempt` decorator to the view handling AJAX POST requests. While this weakens CSRF protection, it simplifies the interaction for this demo.
+3. **Input Sanitization in Backend**:added input validation and sanitization in the back-end to ensure that any input from users is checked before being processed.
+4. **Modal for Adding Products**: created a modal that interacts with the JavaScript function to asynchronously send data to the server, add the product, and update the product list dynamically without page reloads.
+5. **AJAX GET Request**: modified the main page to retrieve the latest product data using an AJAX GET request and displayed the updated list on the page.
+
+
+
 Created by Sugonamu (Will KKI)
