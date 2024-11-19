@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#fnv+66+sf8j()u^h7jxx%$fky7n79s%c*8&whyr1x5z908g^-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1","william-samuel-ecommerceapp.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1","william-samuel-ecommerceapp.pbp.cs.ui.ac.id","10.0.2.2"]
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://pbp.cs.ui.ac.id/william.samuel/ecommerceapp", "https://pbp.cs.ui.ac.id/william.samuel/ecommerceapp"]
 
@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main1'
+    'main1',
+    'authentication',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'e_commerce_app.urls'
@@ -135,3 +138,10 @@ else:
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
+LOGIN_URL = '/login/'  # Set to the path of your actual login view

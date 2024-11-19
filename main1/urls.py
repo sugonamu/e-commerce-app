@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 app_name = 'main'
@@ -19,4 +19,6 @@ urlpatterns = [
     path('delete/<uuid:product_id>/', views.delete_product, name='delete_product'),
     path('error/', views.error, name='error'),
     path('create-ajax/', views.create_product_ajax, name='create_product_ajax'),
+    path('auth/', include('authentication.urls')),
+    path('create-flutter/', views.create_product_flutter, name='create_product_flutter'),
 ]
